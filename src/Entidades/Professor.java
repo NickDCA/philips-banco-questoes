@@ -10,4 +10,5 @@ public class Professor extends Pessoa {
     public void setCertificador(boolean certificador) {
         this.certificador = certificador;
     }
+
 }
