@@ -34,6 +34,12 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String senha;
 
+    @OneToOne(targetEntity = Aluno.class, cascade = CascadeType.ALL, mappedBy = "usuario")
+    private Aluno aluno;
+
+    @OneToOne(targetEntity = Professor.class, cascade = CascadeType.ALL, mappedBy = "usuario")
+    private Professor professor;
+
     @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_role",
             joinColumns = @JoinColumn(name = "usuario_id"),

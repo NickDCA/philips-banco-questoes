@@ -14,11 +14,12 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic();
-//        http.authorizeHttpRequests()
-//                .requestMatchers(HttpMethod.POST, "/clients").permitAll()
-//                .requestMatchers("/my/**").authenticated()
+        http.authorizeHttpRequests()
+                .requestMatchers(HttpMethod.POST, "/alunos").permitAll()
+                .requestMatchers(HttpMethod.POST, "/professores").permitAll()
+                .requestMatchers("/perfil/**").authenticated()
 //                .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
-//                .anyRequest().hasAnyRole("ADMIN", "PROFESSOR");
+                .anyRequest().hasAnyRole("ADMIN");
         http.csrf().disable();
 
         return http.build();
