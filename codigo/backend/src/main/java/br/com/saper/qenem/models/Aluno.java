@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,4 +23,7 @@ public class Aluno {
     @OneToOne(targetEntity = Usuario.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @OneToMany(targetEntity = Prova.class, cascade = CascadeType.ALL, mappedBy = "aluno")
+    private Set<Prova> provas;
 }

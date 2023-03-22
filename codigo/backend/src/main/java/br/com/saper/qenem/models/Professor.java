@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,4 +26,11 @@ public class Professor {
     @OneToOne(targetEntity = Usuario.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @OneToMany(targetEntity = Questao.class, cascade = CascadeType.ALL, mappedBy = "professor")
+    private Set<Questao> questoes;
+
+    @OneToMany(targetEntity = Material.class, cascade = CascadeType.ALL, mappedBy = "professor")
+    private Set<Material> materiais;
+
 }
