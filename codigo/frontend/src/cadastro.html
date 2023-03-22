@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q Enem - Cadastro</title>
+    <link rel="stylesheet" href="/css/custom.min.css" />
+  </head>
+
+  <body class="bg-light">
+    <main class="d-flex w-50 m-auto">
+      <form
+        class="row g-3 d-flex w-auto m-auto justify-content-center align-items-center text-center border p-2 my-4 rounded-4 border-primary bg-light-subtle"
+      >
+        <div class="col-6">
+          <img
+            src="assets/q-enem-website-favicon-color.png"
+            alt=""
+            class="mb-1"
+          />
+        </div>
+
+        <h1 class="h3 mb-3">Insira seus dados</h1>
+
+        <div class="col-md-6 mb-2">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nome"
+            aria-label="Nome"
+          />
+        </div>
+        <div class="col-md-6 mb-2">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Sobrenome"
+            aria-label="Sobrenome"
+          />
+        </div>
+        <div class="col-12 mb-2">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="CPF"
+            aria-label="CPF"
+          />
+        </div>
+        <div class="input-group col-12 mb-2">
+          <span class="input-group-text" id="basic-addon1">@</span>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            aria-label="Email"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="col-md-6 mb-2">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Senha"
+            aria-label="Senha"
+          />
+        </div>
+        <div class="col-md-6 mb-2">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirmar Senha"
+            aria-label="ConfirmarSenha"
+          />
+        </div>
+
+        <h1 class="fs-5">Desejo me cadastrar como:</h1>
+
+        <div class="form-check col-md-3 text-start offset-lg-2">
+          <input
+            class="form-check-input border-primary border-1"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+          />
+          <label class="form-check-label" for="flexRadioDefault1">
+            Aluno
+          </label>
+        </div>
+        <div class="form-check col-md-3 text-start mb-3">
+          <input
+            class="form-check-input border-primary border-1"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+            checked
+          />
+          <label class="form-check-label" for="flexRadioDefault2">
+            Professor
+          </label>
+        </div>
+
+        <button class="w-75 btn btn-lg btn-primary" type="submit">
+          Criar conta
+        </button>
+        <p class="mt-5 mb-3 text-muted">@ 2023, Nicolas</p>
+      </form>
+    </main>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  </body>
+</html>

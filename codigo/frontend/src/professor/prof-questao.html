@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/custom.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Nova Questão</title>
+  </head>
+
+  <body>
+    <main class="container-fluid bg-light">
+      <div class="card">
+        <div class="card-header">
+          <p class="h2 fw-semibold text-primary">NOVA QUESTÃO</p>
+          <p class="lead">
+            <i class="bi bi-info-circle" style="color: #6610f2"></i>
+            Para cadastrar uma nova questão,
+            <span class="text-primary">preencha os campos abaixo</span> e envie
+            sua questão para ser certificada clicando no botão
+            <span class="text-primary">Enviar para Certificação</span> no final
+            do formulário
+          </p>
+        </div>
+        <div class="card-body">
+          <form>
+            <p class="h3 fw-semibold">Área do Conhecimento</p>
+            <select
+              class="form-select border-1 border-primary mb-3"
+              aria-label="selectDisciplina"
+            >
+              <option selected>
+                Selecione a área do conhecimento da nova questão
+              </option>
+              <option value="1">Linguagens, Códigos e suas Tecnologias</option>
+              <option value="2">Ciências Humanas e suas Tecnologias</option>
+              <option value="3">Ciências da Natureza e suas Tecnologias</option>
+              <option value="4">Matemática e suas Tecnologias</option>
+            </select>
+            <div class="mb-3">
+              <label for="textareaEnunciado" class="form-label h3 fw-semibold">
+                Enunciado
+              </label>
+              <textarea
+                class="form-control border-primary"
+                id="textareaEnunciado"
+                rows="2"
+                placeholder="Digite aqui o enunciado da sua questão"
+              >
+              </textarea>
+            </div>
+            <p class="h3 fw-semibold">Itens</p>
+            <div class="mb-3">
+              <textarea
+                class="form-control border-primary-subtle mb-1"
+                id="itemA"
+                rows="1"
+                placeholder="ITEM A"
+              ></textarea>
+              <textarea
+                class="form-control border-primary-subtle mb-1"
+                id="itemB"
+                rows="1"
+                placeholder="ITEM B"
+              ></textarea>
+              <textarea
+                class="form-control border-primary-subtle mb-1"
+                id="itemC"
+                rows="1"
+                placeholder="ITEM C"
+              ></textarea>
+              <textarea
+                class="form-control border-primary-subtle mb-1"
+                id="itemD"
+                rows="1"
+                placeholder="ITEM D"
+              ></textarea>
+              <textarea
+                class="form-control border-primary-subtle mb-1"
+                id="itemE"
+                rows="1"
+                placeholder="ITEM E"
+              ></textarea>
+
+              <select
+                class="form-select border-primary mb-1 w-25"
+                aria-label="Item correto"
+              >
+                <option selected>Selecione o item correto</option>
+                <option value="1">A</option>
+                <option value="2">B</option>
+                <option value="3">C</option>
+                <option value="4">D</option>
+                <option value="5">E</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-lg btn-primary my-3" type="submit">
+            <i class="bi bi-send-check" style="color: white"></i>
+            ENVIAR PARA CERTIFICAÇÃO
+            <i class="bi bi-arrow-right" style="color: white"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  </body>
+</html>
