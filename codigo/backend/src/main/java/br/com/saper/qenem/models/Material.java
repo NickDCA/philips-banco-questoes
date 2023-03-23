@@ -1,5 +1,6 @@
 package br.com.saper.qenem.models;
 
+import br.com.saper.qenem.enums.MateriaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,9 +28,9 @@ public class Material {
     @Column(name = "nome_arquivo")
     private String nomeArquivo;
 
-    @ManyToOne(targetEntity = Materia.class)
-    @JoinColumn(name = "materia_id")
-    private Materia materia;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "materia")
+    private MateriaEnum materia;
 
     @ManyToOne(targetEntity = Professor.class)
     @JoinColumn(name = "professor_id")

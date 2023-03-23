@@ -1,5 +1,6 @@
 package br.com.saper.qenem.models;
 
+import br.com.saper.qenem.enums.MateriaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +21,9 @@ public class Prova {
     @Column(name="prova_id")
     private Long id;
 
-    @ManyToOne(targetEntity = Materia.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "materia_id")
-    private Materia materia;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "materia")
+    private MateriaEnum materia;
     
     @ManyToMany(targetEntity = Questao.class)
     @JoinTable(name = "prova_questoes",

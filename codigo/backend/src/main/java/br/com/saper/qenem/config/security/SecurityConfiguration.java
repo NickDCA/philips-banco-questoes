@@ -18,6 +18,8 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.POST, "/alunos").permitAll()
                 .requestMatchers(HttpMethod.POST, "/professores").permitAll()
                 .requestMatchers("/perfil/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/questoes").authenticated()
+                .requestMatchers(HttpMethod.POST, "/questoes").hasRole("PROFESSOR")
 //                .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
                 .anyRequest().hasAnyRole("ADMIN");
         http.csrf().disable();

@@ -1,15 +1,16 @@
 package br.com.saper.qenem.models;
 
+import br.com.saper.qenem.enums.MateriaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -20,9 +21,9 @@ public class Questao {
     @Column(name="questao_id")
     private Long id;
 
-    @ManyToOne(targetEntity = Materia.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "materia_id")
-    private Materia materia;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "materia")
+    private MateriaEnum materia;
 
     @Column(name = "enunciado")
     private String enunciado;
@@ -39,4 +40,8 @@ public class Questao {
 
     @Column(name = "numero_acessos")
     private Long numeroAcessos;
+
+    public Questao() {
+        this.itensQuestao = new HashSet<ItemQuestao>();
+    }
 }

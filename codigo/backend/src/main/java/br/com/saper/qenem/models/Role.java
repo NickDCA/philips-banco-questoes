@@ -9,11 +9,11 @@ public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    RoleNames role;
+    private RoleNames role;
 
     @Override
     public String getAuthority() {
