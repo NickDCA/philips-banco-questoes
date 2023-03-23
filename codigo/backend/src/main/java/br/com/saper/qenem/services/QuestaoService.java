@@ -21,27 +21,19 @@ public class QuestaoService {
 
     public ResponseEntity<Object> findAll(String materia, Boolean certificada) {
 
-        if (!materia.isBlank() && certificada != null) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAllByMateriaAndCertificada(MateriaEnum.valueOf(materia), certificada).stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
-        } else if (!materia.isBlank() && certificada == null) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAllByMateria(MateriaEnum.valueOf(materia)).stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
-        } else if (materia.isBlank() && certificada != null) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAllByCertificada(certificada).stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
-        } else {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAll().stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
+        Integer certificadaInteger = null;
+        if (certificada == null) {
+            certificadaInteger = -1;
+        } else if (certificada){
+            certificadaInteger = 1;
+        } else if (!certificada) {
+            certificadaInteger = 0;
         }
+
+        return ResponseEntity.status(HttpStatus.OK)
+                    .body(questaoRepository.findAll(materia, certificadaInteger).stream().map(
+                            (questao -> new QuestaoResponseDTO(questao))
+                    ).toList());
     }
 
     @Transactional
