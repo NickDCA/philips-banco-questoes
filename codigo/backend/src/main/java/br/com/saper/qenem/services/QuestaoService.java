@@ -74,6 +74,23 @@ public class QuestaoService {
     }
 
     @Transactional
+    public ResponseEntity<Object> certificar(Long id) {
+        Questao questao = questaoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if ((principal instanceof Usuario usuario) && usuario.getProfessor() != null && usuario.getProfessor().isCertificador() ) {
+            questao.setCertificada(true);
+            questaoRepository.save(questao);
+
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        
+    }
+
+    @Transactional
     public ResponseEntity<Object> incrementaNumeroAcessos(Long id) {
         Questao questao = questaoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
 
@@ -82,4 +99,5 @@ public class QuestaoService {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
 }

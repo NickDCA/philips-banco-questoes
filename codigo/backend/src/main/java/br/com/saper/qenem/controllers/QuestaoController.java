@@ -28,7 +28,12 @@ public class QuestaoController {
         return questaoService.save(questaoRequestDTO);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/certificar/{id}")
+    public ResponseEntity<Object> certificar(@PathVariable(name = "id") Long id) {
+        return questaoService.certificar(id);
+    }
+
+    @PutMapping("/incrementar/{id}")
     public ResponseEntity<Object> incrementaNumeroAcessos(@PathVariable(name = "id") Long id) {
         return questaoService.incrementaNumeroAcessos(id);
     }
