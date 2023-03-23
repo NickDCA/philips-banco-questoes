@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class QuestaoService {
 
@@ -69,5 +71,15 @@ public class QuestaoService {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
+    }
+
+    @Transactional
+    public ResponseEntity<Object> incrementaNumeroAcessos(Long id) {
+        Questao questao = questaoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
+
+        questao.setNumeroAcessos(questao.getNumeroAcessos()+1);
+        questaoRepository.save(questao);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

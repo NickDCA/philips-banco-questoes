@@ -27,9 +27,9 @@ public class QuestaoResponseDTO {
 
     private boolean certificada;
 
-    private Set<ItemQuestaoResponseDTO> itensQuestao;
-
     private Long numeroAcessos;
+
+    private Set<ItemQuestaoResponseDTO> itensQuestao;
 
     public QuestaoResponseDTO(Questao questao) {
         this.id = questao.getId();

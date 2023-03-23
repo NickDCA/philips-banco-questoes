@@ -27,4 +27,10 @@ public class QuestaoController {
     public ResponseEntity<Object> save(@RequestBody @Valid QuestaoRequestDTO questaoRequestDTO) {
         return questaoService.save(questaoRequestDTO);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> incrementaNumeroAcessos(@PathVariable(name = "id") Long id) {
+        return questaoService.incrementaNumeroAcessos(id);
+    }
+
 }
