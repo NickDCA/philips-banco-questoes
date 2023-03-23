@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface QuestaoRepository extends JpaRepository<Questao, Long> {
 
-    @Query(value = "SELECT q.* FROM Questao q WHERE q.materia like '%' || ?1 || '%' AND coalesce(q.CERTIFICADA,-1) = ?2", nativeQuery = true)
+    @Query(value = "SELECT q.* FROM Questao q WHERE q.materia like '%' || ?1 || '%' AND coalesce(q.certificada,-1) = ?2", nativeQuery = true)
     public List<Questao> findAll(String materia, Integer certificada);
+
+    @Query(value = "SELECT q.* FROM Questao q WHERE q.materia like '%' || ?1 || '%' AND q.certificada = 1 order by numero_acessos desc", nativeQuery = true)
+    public List<Questao> findAllOrderByMaisAcessadas(String materia);
 }

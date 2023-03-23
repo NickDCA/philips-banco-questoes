@@ -36,6 +36,13 @@ public class QuestaoService {
                     ).toList());
     }
 
+    public ResponseEntity<Object> findAllOrderByMaisAcessadas(String materia) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(questaoRepository.findAllOrderByMaisAcessadas(materia).stream().map(
+                        (questao -> new QuestaoResponseDTO(questao))
+                ).toList());
+    }
+
     @Transactional
     public ResponseEntity<Object> save(QuestaoRequestDTO questaoRequestDTO) {
 
