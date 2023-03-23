@@ -33,7 +33,7 @@ public class Questao {
     private Professor professor;
 
     @Column(name = "certificada")
-    private boolean certificada;
+    private Boolean certificada;
 
     @OneToMany(targetEntity = ItemQuestao.class, cascade = CascadeType.ALL, mappedBy = "questao")
     private Set<ItemQuestao> itensQuestao;

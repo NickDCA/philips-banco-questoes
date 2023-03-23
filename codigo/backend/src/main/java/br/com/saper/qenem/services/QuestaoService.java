@@ -56,6 +56,7 @@ public class QuestaoService {
             questao.setMateria(MateriaEnum.valueOf(questaoRequestDTO.getMateria()));
             questao.setEnunciado(questaoRequestDTO.getEnunciado());
             questao.setNumeroAcessos(Long.valueOf(0));
+            questao.setCertificada(null);
 
             for (ItemQuestaoRequestDTO item : questaoRequestDTO.getItensQuestao()) {
                 ItemQuestao itemQuestao = new ItemQuestao();
@@ -74,20 +75,20 @@ public class QuestaoService {
     }
 
     @Transactional
-    public ResponseEntity<Object> certificar(Long id) {
+    public ResponseEntity<Object> certificar(Long id, Boolean certificada) {
         Questao questao = questaoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if ((principal instanceof Usuario usuario) && usuario.getProfessor() != null && usuario.getProfessor().isCertificador() ) {
-            questao.setCertificada(true);
+            questao.setCertificada(certificada);
             questaoRepository.save(questao);
 
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        
+
     }
 
     @Transactional

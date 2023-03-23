@@ -25,7 +25,7 @@ public class QuestaoResponseDTO {
 
     private ProfessorResponseDTO professor;
 
-    private boolean certificada;
+    private Boolean certificada;
 
     private Long numeroAcessos;
 
@@ -36,7 +36,7 @@ public class QuestaoResponseDTO {
         this.materia = questao.getMateria();
         this.enunciado = questao.getEnunciado();
         this.professor = new ProfessorResponseDTO(questao.getProfessor());
-        this.certificada = questao.isCertificada();
+        this.certificada = questao.getCertificada();
         this.itensQuestao = questao.getItensQuestao().stream().map(ItemQuestaoResponseDTO::new).collect(Collectors.toSet());
         this.numeroAcessos = questao.getNumeroAcessos();
     }

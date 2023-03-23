@@ -29,8 +29,10 @@ public class QuestaoController {
     }
 
     @PutMapping("/certificar/{id}")
-    public ResponseEntity<Object> certificar(@PathVariable(name = "id") Long id) {
-        return questaoService.certificar(id);
+    public ResponseEntity<Object> certificar(
+            @PathVariable(name = "id") Long id,
+            @RequestParam(name="certificada") Boolean certificada) {
+        return questaoService.certificar(id, certificada);
     }
 
     @PutMapping("/incrementar/{id}")
