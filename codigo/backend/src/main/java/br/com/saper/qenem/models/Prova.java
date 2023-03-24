@@ -37,4 +37,7 @@ public class Prova {
 
     @Column(name="nota")
     private Double nota;
+
+    @Column(name="resolvida")
+    private boolean resolvida;
 }

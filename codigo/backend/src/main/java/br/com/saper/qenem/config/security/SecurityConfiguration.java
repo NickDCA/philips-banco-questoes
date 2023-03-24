@@ -25,6 +25,9 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.GET, "/materiais/**").authenticated()
                 .requestMatchers(HttpMethod.POST, "/materiais").hasRole("PROFESSOR")
                 .requestMatchers(HttpMethod.PUT, "/materiais/incrementar/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/provas/**").hasRole("ALUNO")
+                .requestMatchers(HttpMethod.POST, "/provas/gerar-prova").hasRole("ALUNO")
+                .requestMatchers(HttpMethod.PUT, "/provas/salvar-nota/**").hasRole("ALUNO")
 //                .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
                 .anyRequest().hasAnyRole("ADMIN");
         http.csrf().disable();
