@@ -18,7 +18,7 @@ public class ItemQuestao {
     @Column(name="item_questao_id")
     private Long id;
 
-    @Column(name = "texto")
+    @Column(name = "texto", length = 10485760)
     private String texto;
 
     @Column(name = "correto")

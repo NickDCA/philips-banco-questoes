@@ -25,7 +25,7 @@ public class Questao {
     @Column(name = "materia")
     private MateriaEnum materia;
 
-    @Column(name = "enunciado")
+    @Column(name = "enunciado", length = 10485760)
     private String enunciado;
 
     @ManyToOne(targetEntity = Professor.class)

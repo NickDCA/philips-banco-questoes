@@ -22,7 +22,7 @@ public class Material {
     @Column(name = "titulo")
     private String titulo;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", length = 10485760)
     private String descricao;
 
     @Column(name = "nome_arquivo")
