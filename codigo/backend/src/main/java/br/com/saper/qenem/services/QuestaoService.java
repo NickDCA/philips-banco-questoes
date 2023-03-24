@@ -75,11 +75,13 @@ public class QuestaoService {
 
     @Transactional
     public ResponseEntity<Object> certificar(Long id, Boolean certificada) {
-        Questao questao = questaoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
+        Questao questao = questaoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if ((principal instanceof Usuario usuario) && usuario.getProfessor() != null && usuario.getProfessor().isCertificador() ) {
+        if ((principal instanceof Usuario usuario)
+                && usuario.getProfessor() != null && usuario.getProfessor().isCertificador() ) {
             questao.setCertificada(certificada);
             questaoRepository.save(questao);
 
@@ -92,7 +94,8 @@ public class QuestaoService {
 
     @Transactional
     public ResponseEntity<Object> incrementaNumeroAcessos(Long id) {
-        Questao questao = questaoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
+        Questao questao = questaoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
 
         questao.setNumeroAcessos(questao.getNumeroAcessos()+1);
         questaoRepository.save(questao);
