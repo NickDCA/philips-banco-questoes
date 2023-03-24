@@ -2,6 +2,7 @@ package br.com.saper.qenem.services;
 
 import br.com.saper.qenem.dtos.*;
 import br.com.saper.qenem.enums.MateriaEnum;
+import br.com.saper.qenem.exceptions.ConflictStoreException;
 import br.com.saper.qenem.models.*;
 import br.com.saper.qenem.repositories.QuestaoRepository;
 import jakarta.transaction.Transactional;
@@ -49,6 +50,10 @@ public class QuestaoService {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if ((principal instanceof Usuario usuario) && usuario.getProfessor() != null ) {
+
+            if (questaoRequestDTO.getItensQuestao().size() != 5) {
+                throw new ConflictStoreException("A quantidade de itens de uma questão tem que ser 5");
+            }
 
             Questao questao = new Questao();
             questao.setProfessor(usuario.getProfessor());

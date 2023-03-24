@@ -20,11 +20,11 @@ public class Professor {
     @Column(name="professor_id")
     private Long id;
 
-    @Column(name = "certificador")
+    @Column(name = "certificador", nullable = false)
     private boolean certificador;
 
     @OneToOne(targetEntity = Usuario.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     @OneToMany(targetEntity = Questao.class, cascade = CascadeType.ALL, mappedBy = "professor")

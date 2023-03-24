@@ -22,7 +22,7 @@ public class Prova {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "materia")
+    @Column(name = "materia", nullable = false)
     private MateriaEnum materia;
     
     @ManyToMany(targetEntity = Questao.class)
@@ -32,7 +32,7 @@ public class Prova {
     private Set<Questao> questoes;
 
     @ManyToOne(targetEntity = Aluno.class)
-    @JoinColumn(name = "aluno_id")
+    @JoinColumn(name = "aluno_id", nullable = false)
     private Aluno aluno;
 
     @Column(name="nota")

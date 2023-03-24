@@ -21,7 +21,7 @@ public class Aluno {
     private Long id;
 
     @OneToOne(targetEntity = Usuario.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     @OneToMany(targetEntity = Prova.class, cascade = CascadeType.ALL, mappedBy = "aluno")
