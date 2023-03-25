@@ -18,10 +18,10 @@ public class ItemQuestao {
     @Column(name="item_questao_id")
     private Long id;
 
-    @Column(name = "texto")
+    @Column(name = "texto", length = 10485760, nullable = false)
     private String texto;
 
-    @Column(name = "correto")
+    @Column(name = "correto", nullable = false)
     private boolean correto;
 
     @ManyToOne(targetEntity = Questao.class, cascade = CascadeType.ALL)

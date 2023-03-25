@@ -19,24 +19,24 @@ public class Material {
     @Column(name="item_questao_id")
     private Long id;
 
-    @Column(name = "titulo")
+    @Column(name = "titulo", nullable = false)
     private String titulo;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", length = 10485760)
     private String descricao;
 
-    @Column(name = "nome_arquivo")
+    @Column(name = "nome_arquivo", nullable = false, unique = true)
     private String nomeArquivo;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "materia")
+    @Column(name = "materia", nullable = false)
     private MateriaEnum materia;
 
     @ManyToOne(targetEntity = Professor.class)
-    @JoinColumn(name = "professor_id")
+    @JoinColumn(name = "professor_id", nullable = false)
     private Professor professor;
 
-    @Column(name = "numero_acessos")
+    @Column(name = "numero_acessos", nullable = false)
     private Long numeroAcessos;
 
 }

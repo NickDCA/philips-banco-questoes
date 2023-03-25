@@ -22,14 +22,14 @@ public class Questao {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "materia")
+    @Column(name = "materia", nullable = false)
     private MateriaEnum materia;
 
-    @Column(name = "enunciado")
+    @Column(name = "enunciado", length = 10485760, nullable = false)
     private String enunciado;
 
     @ManyToOne(targetEntity = Professor.class)
-    @JoinColumn(name = "professor_id")
+    @JoinColumn(name = "professor_id", nullable = false)
     private Professor professor;
 
     @Column(name = "certificada")
@@ -38,7 +38,7 @@ public class Questao {
     @OneToMany(targetEntity = ItemQuestao.class, cascade = CascadeType.ALL, mappedBy = "questao")
     private Set<ItemQuestao> itensQuestao;
 
-    @Column(name = "numero_acessos")
+    @Column(name = "numero_acessos", nullable = false)
     private Long numeroAcessos;
 
     public Questao() {

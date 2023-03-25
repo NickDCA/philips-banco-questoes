@@ -22,14 +22,5 @@ public class QuestaoRequestDTO {
     private Long professorId;
 
     private Set<ItemQuestaoRequestDTO> itensQuestao;
-
-//    public Questao toQuestao() {
-//        Questao questao = new Questao();
-//        Materia materia = new Materia();
-//        materia.setMateriaEnum(this.materia);
-//        questao.setMateria(materia);
-//
-//    }
-
-
+    
 }

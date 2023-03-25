@@ -23,6 +23,13 @@ public class QuestaoController {
         return questaoService.findAll(materia, certificada);
     }
 
+    @GetMapping("/mais-acessadas")
+    public ResponseEntity findAllOrderByMaisAcessadas(
+            @RequestParam(name="materia", defaultValue = "") String materia
+    ) {
+        return questaoService.findAllOrderByMaisAcessadas(materia);
+    }
+
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody @Valid QuestaoRequestDTO questaoRequestDTO) {
         return questaoService.save(questaoRequestDTO);

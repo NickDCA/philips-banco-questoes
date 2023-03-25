@@ -2,6 +2,7 @@ package br.com.saper.qenem.services;
 
 import br.com.saper.qenem.dtos.*;
 import br.com.saper.qenem.enums.MateriaEnum;
+import br.com.saper.qenem.exceptions.ConflictStoreException;
 import br.com.saper.qenem.models.*;
 import br.com.saper.qenem.repositories.QuestaoRepository;
 import jakarta.transaction.Transactional;
@@ -21,27 +22,26 @@ public class QuestaoService {
 
     public ResponseEntity<Object> findAll(String materia, Boolean certificada) {
 
-        if (!materia.isBlank() && certificada != null) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAllByMateriaAndCertificada(MateriaEnum.valueOf(materia), certificada).stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
-        } else if (!materia.isBlank() && certificada == null) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAllByMateria(MateriaEnum.valueOf(materia)).stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
-        } else if (materia.isBlank() && certificada != null) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAllByCertificada(certificada).stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
-        } else {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAll().stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
+        Integer certificadaInteger = null;
+        if (certificada == null) {
+            certificadaInteger = -1;
+        } else if (certificada){
+            certificadaInteger = 1;
+        } else if (!certificada) {
+            certificadaInteger = 0;
         }
+
+        return ResponseEntity.status(HttpStatus.OK)
+                    .body(questaoRepository.findAll(materia, certificadaInteger).stream().map(
+                            (questao -> new QuestaoResponseDTO(questao))
+                    ).toList());
+    }
+
+    public ResponseEntity<Object> findAllOrderByMaisAcessadas(String materia) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(questaoRepository.findAllOrderByMaisAcessadas(materia).stream().map(
+                        (questao -> new QuestaoResponseDTO(questao))
+                ).toList());
     }
 
     @Transactional
@@ -50,6 +50,10 @@ public class QuestaoService {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if ((principal instanceof Usuario usuario) && usuario.getProfessor() != null ) {
+
+            if (questaoRequestDTO.getItensQuestao().size() != 5) {
+                throw new ConflictStoreException("A quantidade de itens de uma questão tem que ser 5");
+            }
 
             Questao questao = new Questao();
             questao.setProfessor(usuario.getProfessor());
@@ -76,13 +80,20 @@ public class QuestaoService {
 
     @Transactional
     public ResponseEntity<Object> certificar(Long id, Boolean certificada) {
-        Questao questao = questaoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
+        Questao questao = questaoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if ((principal instanceof Usuario usuario) && usuario.getProfessor() != null && usuario.getProfessor().isCertificador() ) {
-            questao.setCertificada(certificada);
-            questaoRepository.save(questao);
+        if ((principal instanceof Usuario usuario)
+                && usuario.getProfessor() != null && usuario.getProfessor().isCertificador() ) {
+
+            if (!questao.getProfessor().getId().equals(usuario.getProfessor().getId())) {
+                questao.setCertificada(certificada);
+                questaoRepository.save(questao);
+            } else {
+                throw new NoSuchElementException("Professor não pode validar uma questão criada por ele mesmo");
+            }
 
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
@@ -93,7 +104,8 @@ public class QuestaoService {
 
     @Transactional
     public ResponseEntity<Object> incrementaNumeroAcessos(Long id) {
-        Questao questao = questaoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
+        Questao questao = questaoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
 
         questao.setNumeroAcessos(questao.getNumeroAcessos()+1);
         questaoRepository.save(questao);
