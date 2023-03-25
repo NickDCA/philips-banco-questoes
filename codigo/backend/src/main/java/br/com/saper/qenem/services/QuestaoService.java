@@ -87,8 +87,13 @@ public class QuestaoService {
 
         if ((principal instanceof Usuario usuario)
                 && usuario.getProfessor() != null && usuario.getProfessor().isCertificador() ) {
-            questao.setCertificada(certificada);
-            questaoRepository.save(questao);
+
+            if (!questao.getProfessor().getId().equals(usuario.getProfessor().getId())) {
+                questao.setCertificada(certificada);
+                questaoRepository.save(questao);
+            } else {
+                throw new NoSuchElementException("Professor não pode validar uma questão criada por ele mesmo");
+            }
 
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
