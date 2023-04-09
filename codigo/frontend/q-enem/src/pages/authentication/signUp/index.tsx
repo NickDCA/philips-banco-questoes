@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row'
 import { BsBoxArrowRight } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
-export default function SignIn() {
+export default function SignUp() {
   return (
     <body>
       <main className='d-flex w-50 m-auto'>
