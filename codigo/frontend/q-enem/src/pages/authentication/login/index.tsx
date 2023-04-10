@@ -35,8 +35,9 @@ export default function Login() {
         Authorization: basicAuth,
       },
     }
+    console.log(basicAuth)
     api
-      .get('alunos', {}, htmlConfig)
+      .get('perfil/dados', {}, htmlConfig)
       .then((res) => {
         console.log('Sucesso: ' + res)
       })

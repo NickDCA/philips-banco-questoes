@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const useAPI = () => {
   const URL_BASE: string | undefined = process.env.REACT_APP_BACK_HOST
-  console.log(URL_BASE)
+  console.log('URL - ' + URL_BASE)
   const defaultConfigHtml = () => {
     return {
       headers: {
