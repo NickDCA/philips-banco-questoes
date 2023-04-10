@@ -1,14 +1,14 @@
-@import '../../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/functions';
 $primary: #6610f2;
 $light: tint-color(#6610f2, 80%);
 $primary-text: $light;
 $primary-bg-subtle: $light;
 $primary-border-subtle: tint-color(#6610f2, 60%);
 
-@import '../../node_modules/bootstrap/scss/variables';
-@import '../../node_modules/bootstrap/scss/maps';
-@import '../../node_modules/bootstrap/scss/mixins';
-@import '../../node_modules/bootstrap/scss/utilities';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/maps';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/utilities';
 
 $all-colors: map-merge-multiple(
   $blues,
@@ -50,6 +50,6 @@ $utilities: map-merge(
   )
 );
 
-@import '../../node_modules/bootstrap/scss/utilities/api';
+@import '../node_modules/bootstrap/scss/utilities/api';
 
-@import '../../node_modules/bootstrap/scss/bootstrap.scss'; // 8. Add additional custom code here
+@import '../node_modules/bootstrap/scss/bootstrap.scss'; // 8. Add additional custom code here
