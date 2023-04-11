@@ -1,6 +1,6 @@
 import AlunoBase from 'pages/aluno/base'
 import AlunoDesempenho from 'pages/aluno/desempenho'
-import AlunoInicio from 'pages/aluno/home'
+import AlunoInicio from 'pages/aluno/inicio'
 import Login from 'pages/authentication/login'
 import LandingPage from 'pages/landingPage'
 import NotFound from 'pages/notFound'
