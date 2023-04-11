@@ -3,7 +3,7 @@ import Favicon from 'assets/q-enem-website-favicon-color.png'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { BsBoxArrowRight as LoginBtn } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // import axios from 'axios'
 import { Buffer } from 'buffer'
 import { useAPI } from '../../../services/API'
@@ -14,6 +14,7 @@ type LoginForm = {
 }
 
 export default function Login() {
+  const navigate = useNavigate()
   const api = useAPI()
   const [conta, setConta] = useState<LoginForm>({ username: '', password: '' })
 
@@ -39,7 +40,7 @@ export default function Login() {
     api
       .get('perfil/dados', {}, htmlConfig)
       .then((res) => {
-        console.log('Sucesso: ' + res)
+        navigate('/aluno')
       })
       .catch((e) => {
         console.log('Error:', e)
@@ -48,28 +49,28 @@ export default function Login() {
 
   return (
     <Form
-      className='row g-2 w-50 m-auto justify-content-center align-items-center text-center border p-2 my-4'
+      className='row g-2 w-25 m-auto justify-content-center align-items-center text-center border p-2 my-4'
       onSubmit={handleSubmit}
     >
       <div className='col-6'>
         <img src={Favicon} alt='Logo do Q Enem' className='mb-1' />
       </div>
-      <h1 className='h3 mb-3'>Insira seus dados para cadastro</h1>
+      <h1 className='h3 mb-3'>Login</h1>
       <Form.Group className='mb-3 text-start' controlId='formUsername'>
-        <Form.Label>Username</Form.Label>
+        <Form.Label>Usuário</Form.Label>
         <Form.Control
           type='text'
-          placeholder='Enter username'
+          placeholder='Seu nome de usuário'
           value={conta.username}
           onChange={(e) => updateConta('username', e)}
         />
       </Form.Group>
 
       <Form.Group className='mb-3 text-start' controlId='formPassword'>
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Senha</Form.Label>
         <Form.Control
           type='password'
-          placeholder='Password'
+          placeholder='Sua senha'
           value={conta.password}
           onChange={(e) => updateConta('password', e)}
         />
@@ -77,7 +78,7 @@ export default function Login() {
       <Button variant='primary' type='submit' className='btn-lg w-50'>
         Entrar
       </Button>
-      <Link to='/cadastro' className='text-decoration-none'>
+      <Link to='/cadastro' className='mb-3'>
         Não possui uma conta? Cadastre-se <LoginBtn />
       </Link>
     </Form>
