@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/materiais")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MaterialController {
 
     @Autowired

@@ -31,6 +31,7 @@ public class SecurityConfiguration {
 //                .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
                 .anyRequest().hasAnyRole("ADMIN");
         http.csrf().disable();
+        http.cors();
 
         return http.build();
     }

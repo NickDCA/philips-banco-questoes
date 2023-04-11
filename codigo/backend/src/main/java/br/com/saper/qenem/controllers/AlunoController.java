@@ -9,14 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/alunos")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AlunoController {
 
     @Autowired
     private AlunoService alunoService;
 
     @GetMapping
+    @CrossOrigin
     public ResponseEntity findAll() {
         return alunoService.findAll();
     }

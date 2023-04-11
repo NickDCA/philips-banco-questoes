@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/provas")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProvaController {
 
     @Autowired
