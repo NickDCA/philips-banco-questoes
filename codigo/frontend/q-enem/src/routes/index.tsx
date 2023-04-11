@@ -1,5 +1,6 @@
 import AlunoBase from 'pages/aluno/base'
 import AlunoDesempenho from 'pages/aluno/desempenho'
+import AlunoExplorar from 'pages/aluno/explorar'
 import AlunoInicio from 'pages/aluno/inicio'
 import Login from 'pages/authentication/login'
 import LandingPage from 'pages/landingPage'
@@ -17,6 +18,7 @@ export default function MainRouter() {
         <Route path={'/aluno/'} element={<AlunoBase />}>
           <Route index element={<AlunoInicio />} />
           <Route path={'desempenho'} element={<AlunoDesempenho />} />
+          <Route path={'explorar'} element={<AlunoExplorar />} />
         </Route>
       </Route>
     </Routes>
