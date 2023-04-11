@@ -6,13 +6,25 @@ import {
   BsFolder2 as Materiais,
   BsSearch as Explorar,
   BsJournalCheck as GerarProva,
+  BsFire as MaisAcessados,
+  BsFillBookmarkCheckFill as Salvos,
 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { NavDropdown } from 'react-bootstrap'
 
 export default function NavbarAluno() {
+  function titleDropdown() {
+    return (
+      <>
+        <Materiais className='mb-1' />
+        <span className='ms-2'>Materiais e Questões</span>
+      </>
+    )
+  }
+
   return (
     <Navbar bg='light' expand='lg'>
       <Container className='fs-5'>
@@ -36,24 +48,31 @@ export default function NavbarAluno() {
               </Link>
             </Nav.Link>
             <Nav.Link className='mx-2'>
-              <Link to='materiais' className='link-dark text-decoration-none'>
-                <Materiais className='mb-1' />
-                <span className='ms-2'>Materiais</span>
-              </Link>
-            </Nav.Link>
-
-            <Nav.Link className='mx-2'>
-              <Link to='explorar' className='link-dark text-decoration-none'>
-                <Explorar className='mb-1' />
-                <span className='ms-2'>Explorar</span>
-              </Link>
-            </Nav.Link>
-            <Nav.Link className='mx-2'>
               <Link to='gerar-prova' className='link-dark text-decoration-none'>
                 <GerarProva className='mb-1' />
                 <span className='ms-2'>Gerar Prova</span>
               </Link>
             </Nav.Link>
+            <NavDropdown title={titleDropdown()} id='basic-nav-dropdown'>
+              <NavDropdown.Item>
+                <Link to='salvos' className='link-dark text-decoration-none'>
+                  <Salvos className='mb-1' />
+                  <span className='ms-2'>Salvos</span>
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to='explorar' className='link-dark text-decoration-none'>
+                  <Explorar className='mb-1' />
+                  <span className='ms-2'>Explorar</span>
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to='mais-acessados' className='link-dark text-decoration-none'>
+                  <MaisAcessados className='mb-1' />
+                  <span className='ms-2'>Mais Acessados </span>
+                </Link>
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
