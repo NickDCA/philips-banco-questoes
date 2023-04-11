@@ -10,7 +10,7 @@ export default function CardSugestao({ titulo, conteudo, link }: CardSugestaoTyp
   return (
     <div className='col-md-4 m-3'>
       <div className='card'>
-        <div className='card-header fs-4 bg-light'>{titulo}</div>
+        <div className='card-header fs-4 bg-primary text-white'>{titulo}</div>
         <div className='card-body lead'>{conteudo}</div>
         <div className='card-footer fs-5'>
           <Link to={link} className='text-decoration-none'>
