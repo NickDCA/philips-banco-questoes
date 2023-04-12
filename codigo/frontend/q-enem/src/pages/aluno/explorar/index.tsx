@@ -1,27 +1,38 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { BsArrowLeft as Voltar } from 'react-icons/bs'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import { useAPI } from '../../../services/API'
+import AuthContext from 'store/authContext'
+import QuestoesContext, { Questoes } from 'store/questoesContext'
 export default function AlunoExplorar() {
-  const navigate = useNavigate()
-  const [questoes, setQuestoes] = useState([])
-  const [disciplina, setDisciplina] = useState()
   const api = useAPI()
+  const auth = useContext(AuthContext)
+  const questoes = useContext(QuestoesContext)
+  const htmlConfig = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      Authorization: auth.basicAuth,
+    },
+  }
 
-  useEffect(() => {
-    api.get('questoes', {}).then((resposta) => console.log(resposta))
-  }, [])
+  //   useEffect(() => {
+  //     const materia = ''
+  //     api
+  //       .get(`questoes?materia=${materia}&certificada=true`, { certificada: true }, htmlConfig)
+  //       .then((resposta) => questoes.addQuestao ? questoes.addQuestao(resposta) : null)
+  //   }, [])
   return (
     <Container className='d-flex flex-column justify-content-center w-100 mt-4'>
       <Form.Select aria-label='Default select example' size='lg' className='border-primary'>
         <option>Filtre por área do conhecimento</option>
-        <option value='1'>Todas</option>
-        <option value='2'>Linguagens e Códigos</option>
-        <option value='3'>Ciências Humanas</option>
-        <option value='4'>Ciências da Natureza</option>
-        <option value='5'>Matemática</option>
+        <option value='default'>Todas</option>
+        <option value='LINGUAGENS_CODIGOS'>Linguagens e Códigos</option>
+        <option value='CIENCIAS_HUMANAS'>Ciências Humanas</option>
+        <option value='CIENCIAS_NATUREZA'>Ciências da Natureza</option>
+        <option value='MATEMATICA'>Matemática</option>
       </Form.Select>
 
       {/* <div className='border border-primary  bg-light text-uppercase'>

@@ -23,7 +23,7 @@ public class QuestaoResponseDTO {
 
     private String enunciado;
 
-    private ProfessorResponseDTO professor;
+    private Long professorId;
 
     private Boolean certificada;
 
@@ -35,7 +35,7 @@ public class QuestaoResponseDTO {
         this.id = questao.getId();
         this.materia = questao.getMateria();
         this.enunciado = questao.getEnunciado();
-        this.professor = new ProfessorResponseDTO(questao.getProfessor());
+        this.professorId = questao.getProfessor().getId();
         this.certificada = questao.getCertificada();
         this.itensQuestao = questao.getItensQuestao().stream().map(ItemQuestaoResponseDTO::new).collect(Collectors.toSet());
         this.numeroAcessos = questao.getNumeroAcessos();

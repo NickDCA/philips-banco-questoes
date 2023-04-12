@@ -12,6 +12,8 @@ export type User = {
 
 export type AuthType = {
   user?: User
+  basicAuth?: string
+  updateAuth?(auth: string | undefined): void
   updateUser?(user: User | undefined): void
 }
 

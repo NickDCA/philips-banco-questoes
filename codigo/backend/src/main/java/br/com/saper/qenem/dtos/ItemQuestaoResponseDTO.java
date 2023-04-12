@@ -12,11 +12,14 @@ import lombok.Setter;
 @Setter
 public class ItemQuestaoResponseDTO {
 
+    private Long id;
+
     private String texto;
 
     private boolean correto;
 
     public ItemQuestaoResponseDTO(ItemQuestao itemQuestao) {
+        this.id = itemQuestao.getId();
         this.texto = itemQuestao.getTexto();
         this.correto = itemQuestao.isCorreto();
     }

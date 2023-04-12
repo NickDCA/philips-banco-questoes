@@ -44,7 +44,10 @@ export default function Login() {
       .then((res) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         auth.updateUser ? auth.updateUser(res.data.usuario) : null
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        auth.updateAuth ? auth.updateAuth(basicAuth) : null
         console.log(auth.user)
+        console.log(auth.basicAuth)
         navigate('/aluno')
       })
       .catch((e) => {
