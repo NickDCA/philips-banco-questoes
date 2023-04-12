@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -21,7 +22,7 @@ public class QuestaoService {
     private QuestaoRepository questaoRepository;
 
     public ResponseEntity<Object> findAll(String materia, Boolean certificada) {
-
+        // Quando o atributo certificada vem null, ele retorna apenas as questões que não foram certificadas ainda.
         Integer certificadaInteger = null;
         if (certificada == null) {
             certificadaInteger = -1;
@@ -31,10 +32,12 @@ public class QuestaoService {
             certificadaInteger = 0;
         }
 
+        List<QuestaoResponseDTO> questoes = questaoRepository.findAll(materia, certificadaInteger).stream().map(
+                (questao -> new QuestaoResponseDTO(questao))
+        ).toList();
+        System.out.println("Número de questões: " + questoes.size());
         return ResponseEntity.status(HttpStatus.OK)
-                    .body(questaoRepository.findAll(materia, certificadaInteger).stream().map(
-                            (questao -> new QuestaoResponseDTO(questao))
-                    ).toList());
+                    .body(questoes);
     }
 
     public ResponseEntity<Object> findAllOrderByMaisAcessadas(String materia) {
