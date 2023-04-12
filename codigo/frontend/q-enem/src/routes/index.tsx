@@ -5,7 +5,6 @@ import AlunoInicio from 'pages/aluno/inicio'
 import Login from 'pages/authentication/login'
 import LandingPage from 'pages/landingPage'
 import NotFound from 'pages/notFound'
-import React from 'react'
 import { Outlet, Route, Routes } from 'react-router-dom'
 
 export default function MainRouter() {

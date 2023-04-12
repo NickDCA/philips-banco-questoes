@@ -29,7 +29,9 @@ export default function NavbarAluno() {
     <Navbar bg='light' expand='lg'>
       <Container className='fs-5'>
         <Navbar.Brand>
-          <img src={Logo} alt='logo q-enem' width='80' />
+          <Link to='/'>
+            <img src={Logo} alt='logo q-enem' width='80' />
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
 

@@ -1,25 +1,30 @@
 import Footer from 'components/footer'
 import NavbarAluno from 'components/navbarAluno'
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
+import AuthContext from 'store/authContext'
 
 export default function AlunoBase() {
-  return (
-    <main className='min-vh-100'>
-      <NavbarAluno />
-      <Container className='min-vh-100'>
-        <Outlet />
-      </Container>
+  const RequireAuth = () => {
+    const auth = useContext(AuthContext)
 
-      {/* <Cabecalho />
-      <FavoritosProvider>
-        <Container>
+    if (!auth.user) {
+      return <Navigate to={'/entrar'} />
+    }
+
+    return null
+  }
+  return (
+    <>
+      <RequireAuth />
+      <div className='min-vh-100'>
+        <NavbarAluno />
+        <Container className='min-vh-100'>
           <Outlet />
         </Container>
-      </FavoritosProvider>
-      <Rodape /> */}
-      <Footer />
-    </main>
+        <Footer />
+      </div>
+    </>
   )
 }
