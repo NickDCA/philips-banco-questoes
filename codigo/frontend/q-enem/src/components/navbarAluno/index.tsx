@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Logo from 'assets/logo-no-background.png'
-import {
-  BsHouse as Home,
-  BsSpeedometer2 as Desempenho,
-  BsFolder2 as Materiais,
-  BsSearch as Explorar,
-  BsJournalCheck as GerarProva,
-  BsFire as MaisAcessados,
-  BsFillBookmarkCheckFill as Salvos,
-} from 'react-icons/bs'
+import { BsFolder2 as Materiais } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { NavDropdown } from 'react-bootstrap'
+import AuthContext from 'store/authContext'
 
-export default function NavbarAluno() {
+type Link = {
+  text: string
+  path: string
+  icon: JSX.Element
+}
+
+export type NavbarAppProps = {
+  links: Link[]
+  dropLinks: Link[]
+}
+
+export default function NavbarApp({ links, dropLinks }: NavbarAppProps) {
+  const auth = useContext(AuthContext)
   function titleDropdown() {
     return (
       <>
@@ -37,7 +42,17 @@ export default function NavbarAluno() {
 
         <Navbar.Collapse id='basic-navbar-nav' className='flex-grow-0'>
           <Nav className='nav'>
-            <Nav.Link className='mx-2'>
+            {links.map((link) => {
+              return (
+                <Nav.Link key={link.path} className='mx-2'>
+                  <Link to={link.path} className='link-dark text-decoration-none'>
+                    <span className='mb-1'>{link.icon}</span>
+                    <span className='ms-2'>{link.text}</span>
+                  </Link>
+                </Nav.Link>
+              )
+            })}
+            {/* <Nav.Link className='mx-2'>
               <Link to='/aluno/' className='link-dark text-decoration-none'>
                 <Home className='mb-1' />
                 <span className='ms-2'>Início</span>
@@ -54,27 +69,39 @@ export default function NavbarAluno() {
                 <GerarProva className='mb-1' />
                 <span className='ms-2'>Gerar Prova</span>
               </Link>
-            </Nav.Link>
-            <NavDropdown title={titleDropdown()} id='basic-nav-dropdown'>
-              <NavDropdown.Item>
-                <Link to='salvos' className='link-dark text-decoration-none'>
-                  <Salvos className='mb-1' />
-                  <span className='ms-2'>Salvos</span>
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to='explorar' className='link-dark text-decoration-none'>
-                  <Explorar className='mb-1' />
-                  <span className='ms-2'>Explorar</span>
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to='mais-acessados' className='link-dark text-decoration-none'>
-                  <MaisAcessados className='mb-1' />
-                  <span className='ms-2'>Mais Acessados </span>
-                </Link>
-              </NavDropdown.Item>
-            </NavDropdown>
+            </Nav.Link> */}
+            {auth.user?.roles[0].authority !== 'ROLE_PROFESSOR' ? (
+              <NavDropdown title={titleDropdown()} id='basic-nav-dropdown'>
+                {dropLinks.map((link) => {
+                  return (
+                    <NavDropdown.Item key={link.path} className='mx-2'>
+                      <Link to={link.path} className='link-dark text-decoration-none'>
+                        <span className='mb-1'>{link.icon}</span>
+                        <span className='ms-2'>{link.text}</span>
+                      </Link>
+                    </NavDropdown.Item>
+                  )
+                })}
+                {/* <NavDropdown.Item>
+                  <Link to='salvos' className='link-dark text-decoration-none'>
+                    <Salvos className='mb-1' />
+                    <span className='ms-2'>Salvos</span>
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to='explorar' className='link-dark text-decoration-none'>
+                    <Explorar className='mb-1' />
+                    <span className='ms-2'>Explorar</span>
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to='mais-acessados' className='link-dark text-decoration-none'>
+                    <MaisAcessados className='mb-1' />
+                    <span className='ms-2'>Mais Acessados </span>
+                  </Link>
+                </NavDropdown.Item> */}
+              </NavDropdown>
+            ) : null}
           </Nav>
         </Navbar.Collapse>
       </Container>
