@@ -5,21 +5,7 @@ import AlunoInicio from 'pages/aluno/inicio'
 import Login from 'pages/authentication/login'
 import LandingPage from 'pages/landingPage'
 import NotFound from 'pages/notFound'
-import React, { useContext } from 'react'
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
-import AuthContext from 'store/authContext'
-
-const RequireAuth = () => {
-  const auth = useContext(AuthContext)
-
-  console.log(auth.user)
-
-  if (!auth.user) {
-    return <Navigate to={'/entrar'} />
-  }
-
-  return <Outlet />
-}
+import { Outlet, Route, Routes } from 'react-router-dom'
 
 export default function MainRouter() {
   return (

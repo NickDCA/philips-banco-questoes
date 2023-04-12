@@ -6,11 +6,8 @@ import Container from 'react-bootstrap/Container'
 import AuthContext from 'store/authContext'
 
 export default function AlunoBase() {
-  const auth = useContext(AuthContext)
   const RequireAuth = () => {
     const auth = useContext(AuthContext)
-
-    console.log(auth.user)
 
     if (!auth.user) {
       return <Navigate to={'/entrar'} />
@@ -21,13 +18,13 @@ export default function AlunoBase() {
   return (
     <>
       <RequireAuth />
-      <main className='min-vh-100'>
+      <div className='min-vh-100'>
         <NavbarAluno />
         <Container className='min-vh-100'>
           <Outlet />
         </Container>
         <Footer />
-      </main>
+      </div>
     </>
   )
 }
