@@ -1,12 +1,22 @@
-// type User {
+import { createContext } from 'react'
 
-// 		"nome": string
-// 		"login": string
-// 		"email": string
-// }
+export type User = {
+  id: number
+  nome: string
+  login: string
+  email: string
+  roles: {
+    authority: string
+  }[]
+}
 
-// type AuthType = {
-//     user?:
-// }
+export type AuthType = {
+  user?: User
+  updateUser?(user: User | undefined): void
+}
 
-// const authDefault: AuthType = {};
+const authDefault: AuthType = {}
+
+const AuthContext = createContext(authDefault)
+
+export default AuthContext

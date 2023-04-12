@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Favicon from 'assets/q-enem-website-favicon-color.png'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 // import axios from 'axios'
 import { Buffer } from 'buffer'
 import { useAPI } from '../../../services/API'
+import AuthContext from 'store/authContext'
 
 type LoginForm = {
   username: string
@@ -14,15 +15,16 @@ type LoginForm = {
 }
 
 export default function Login() {
+  const auth = useContext(AuthContext)
   const navigate = useNavigate()
   const api = useAPI()
   const [conta, setConta] = useState<LoginForm>({ username: '', password: '' })
 
-  const updateConta = (field: string, e: any) => {
-    setConta((conta) => ({ ...conta, [field]: e.target.value }))
+  const updateConta = (e: React.ChangeEvent<any>, name: 'username' | 'password') => {
+    setConta((conta) => ({ ...conta, [name]: e.target.value }))
   }
 
-  const handleSubmit = (e: any) => {
+  function handleSubmit(e: any) {
     e.preventDefault()
 
     console.log(conta)
@@ -40,6 +42,9 @@ export default function Login() {
     api
       .get('perfil/dados', {}, htmlConfig)
       .then((res) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        auth.updateUser ? auth.updateUser(res.data.usuario) : null
+        console.log(auth.user)
         navigate('/aluno')
       })
       .catch((e) => {
@@ -62,7 +67,7 @@ export default function Login() {
           type='text'
           placeholder='Seu nome de usuário'
           value={conta.username}
-          onChange={(e) => updateConta('username', e)}
+          onChange={(e) => updateConta(e, 'username')}
         />
       </Form.Group>
 
@@ -72,7 +77,7 @@ export default function Login() {
           type='password'
           placeholder='Sua senha'
           value={conta.password}
-          onChange={(e) => updateConta('password', e)}
+          onChange={(e) => updateConta(e, 'password')}
         />
       </Form.Group>
       <Button variant='primary' type='submit' className='btn-lg w-50'>

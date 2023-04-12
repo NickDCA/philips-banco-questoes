@@ -1,8 +1,10 @@
 import CardSugestao from 'components/card-sugestao'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Container } from 'react-bootstrap'
+import AuthContext from 'store/authContext'
 
 export default function AlunoInicio() {
+  const auth = useContext(AuthContext)
   return (
     <Container className='row my-3 g-3 justify-content-center'>
       <CardSugestao
