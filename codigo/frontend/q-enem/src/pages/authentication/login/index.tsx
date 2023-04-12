@@ -48,7 +48,7 @@ export default function Login() {
         auth.updateAuth ? auth.updateAuth(basicAuth) : null
         console.log(auth.user)
         console.log(auth.basicAuth)
-        navigate('/aluno')
+        navigate('/q-enem')
       })
       .catch((e) => {
         console.log('Error:', e)

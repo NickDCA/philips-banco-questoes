@@ -12,6 +12,7 @@ import {
   BsSearch,
   BsSpeedometer2,
 } from 'react-icons/bs'
+import { Container } from 'react-bootstrap'
 
 export default function Base() {
   const auth = useContext(AuthContext)
@@ -110,12 +111,13 @@ export default function Base() {
     },
   }
   return (
-    <>
+    <main className='min-vh-100'>
       <NavbarApp {...menuLinks[auth.user?.roles[0].authority || 'UNDEFINED']} />
-
-      <Outlet />
+      <Container className='min-vh-75'>
+        <Outlet />
+      </Container>
 
       <Footer />
-    </>
+    </main>
   )
 }

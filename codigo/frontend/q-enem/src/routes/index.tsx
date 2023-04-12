@@ -1,7 +1,7 @@
-import Base from 'pages/aluno/base'
-import AlunoDesempenho from 'pages/aluno/desempenho'
-import AlunoExplorar from 'pages/aluno/explorar'
-import AlunoInicio from 'pages/aluno/inicio'
+import Base from 'pages/principal/base'
+import AlunoDesempenho from 'pages/principal/desempenho'
+import AlunoExplorar from 'pages/principal/explorar'
+import AlunoInicio from 'pages/principal/inicio'
 import Login from 'pages/authentication/login'
 import LandingPage from 'pages/landingPage'
 import NotFound from 'pages/notFound'
@@ -34,7 +34,7 @@ export default function MainRouter() {
             </RequireAuth>
           }
         >
-          <Route path={'/q-enem/inicio'} element={<AlunoInicio />} />
+          <Route index element={<AlunoInicio />} />
           <Route path={'desempenho'} element={<AlunoDesempenho />} />
           <Route path={'explorar'} element={<AlunoExplorar />} />
         </Route>

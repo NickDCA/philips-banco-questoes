@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { NavDropdown } from 'react-bootstrap'
 import AuthContext from 'store/authContext'
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 type Link = {
   text: string
   path: string
@@ -46,8 +47,9 @@ export default function NavbarApp({ links, dropLinks }: NavbarAppProps) {
               return (
                 <Nav.Link key={link.path} className='mx-2'>
                   <Link to={link.path} className='link-dark text-decoration-none'>
-                    <span className='mb-1'>{link.icon}</span>
-                    <span className='ms-2'>{link.text}</span>
+                    {link.icon}
+                    {'  '}
+                    <span>{link.text}</span>
                   </Link>
                 </Nav.Link>
               )
