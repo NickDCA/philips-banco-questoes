@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 import { useAPI } from '../../../services/API'
 import AuthContext from 'store/authContext'
 import QuestoesContext, { Questoes } from 'store/questoesContext'
-export default function AlunoExplorar() {
+export default function Explorar() {
   const api = useAPI()
   const auth = useContext(AuthContext)
   const questoes = useContext(QuestoesContext)

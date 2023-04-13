@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AlunoDesempenho() {
+export default function Desempenho() {
   return (
     <body>
       <main className='d-flex'>

@@ -8,8 +8,10 @@ export default function NavbarHorizontal() {
   return (
     <Navbar bg='light' expand='lg'>
       <Container className='justify-content-between'>
-        <Navbar.Brand href='#home'>
-          <img src={Logo} alt='' width='80' />
+        <Navbar.Brand>
+          <Link to='/'>
+            <img src={Logo} alt='' width='80' />
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' className='text-primary' />
         <Navbar.Collapse id='basic-navbar-nav' className='flex-grow-0'>

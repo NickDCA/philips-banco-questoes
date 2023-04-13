@@ -21,34 +21,34 @@ export default function Base() {
       links: [
         {
           text: 'Home',
-          path: 'q-enem/home',
+          path: 'home',
           icon: <BsHouse />,
         },
         {
           text: 'Desempenho',
-          path: 'q-enem/desempenho',
+          path: 'desempenho',
           icon: <BsSpeedometer2 />,
         },
         {
           text: 'Gerar Prova',
-          path: 'q-enem/gerar-prova',
+          path: 'gerar-prova',
           icon: <BsJournalCheck />,
         },
       ],
       dropLinks: [
         {
           text: 'Salvos',
-          path: 'q-enem/salvos',
+          path: 'salvos',
           icon: <BsHouse />,
         },
         {
           text: 'Explorar',
-          path: 'q-enem/explorar',
+          path: 'explorar',
           icon: <BsSearch />,
         },
         {
           text: 'Mais Acessados',
-          path: 'q-enem/mais-acessados',
+          path: 'mais-acessados',
           icon: <BsFire />,
         },
       ],
@@ -57,17 +57,17 @@ export default function Base() {
       links: [
         {
           text: 'Home',
-          path: 'q-enem/home',
+          path: 'home',
           icon: <BsHouse />,
         },
         {
           text: 'Questão',
-          path: 'q-enem/nova-questao',
+          path: 'nova-questao',
           icon: <BsFilePlus />,
         },
         {
           text: 'Material',
-          path: 'q-enem/novo-material',
+          path: 'novo-material',
           icon: <BsFileEarmarkPdf />,
         },
       ],
@@ -77,34 +77,34 @@ export default function Base() {
       links: [
         {
           text: 'Home',
-          path: 'q-enem/home',
+          path: 'home',
           icon: <BsHouse />,
         },
         {
           text: 'Desempenho',
-          path: 'q-enem/desempenho',
+          path: 'desempenho',
           icon: <BsSpeedometer2 />,
         },
         {
           text: 'Gerar Prova',
-          path: 'q-enem/gerar-prova',
+          path: 'gerar-prova',
           icon: <BsJournalCheck />,
         },
       ],
       dropLinks: [
         {
           text: 'Salvos',
-          path: 'q-enem/salvos',
+          path: 'salvos',
           icon: <BsHouse />,
         },
         {
           text: 'Explorar',
-          path: 'q-enem/explorar',
+          path: 'explorar',
           icon: <BsSearch />,
         },
         {
           text: 'Mais Acessados',
-          path: 'q-enem/mais-acessados',
+          path: 'mais-acessados',
           icon: <BsFire />,
         },
       ],
@@ -113,7 +113,7 @@ export default function Base() {
   return (
     <main className='min-vh-100'>
       <NavbarApp {...menuLinks[auth.user?.roles[0].authority || 'UNDEFINED']} />
-      <Container className='min-vh-75'>
+      <Container className='min-vh-100'>
         <Outlet />
       </Container>
 

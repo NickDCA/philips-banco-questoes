@@ -12,9 +12,9 @@ export type User = {
 
 export type AuthType = {
   user?: User
+  updateUser?(user: User | undefined): void
   basicAuth?: string
   updateAuth?(auth: string | undefined): void
-  updateUser?(user: User | undefined): void
 }
 
 const authDefault: AuthType = {}
