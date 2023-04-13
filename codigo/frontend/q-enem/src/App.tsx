@@ -7,12 +7,9 @@ import QuestoesContext, { Questao, Questoes } from 'store/questoesContext'
 
 export default function App() {
   const [user, setUser] = useState<User>()
-  const [basicAuth, setBasicAuth] = useState<string>()
   const [questoes, setQuestoes] = useState<Questoes>()
   return (
-    <AuthContext.Provider
-      value={{ user, updateUser: setUser, basicAuth, updateAuth: setBasicAuth }}
-    >
+    <AuthContext.Provider value={{ user, updateUser: setUser }}>
       <QuestoesContext.Provider value={{ questoes, addQuestao: setQuestoes } as any}>
         <MainRouter />
       </QuestoesContext.Provider>

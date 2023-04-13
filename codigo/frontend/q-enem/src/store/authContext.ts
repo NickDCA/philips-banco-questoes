@@ -8,13 +8,12 @@ export type User = {
   roles: {
     authority: string
   }[]
+  basicAuth: string
 }
 
 export type AuthType = {
   user?: User
   updateUser?(user: User | undefined): void
-  basicAuth?: string
-  updateAuth?(auth: string | undefined): void
 }
 
 const authDefault: AuthType = {}

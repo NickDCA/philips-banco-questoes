@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form'
 import { useAPI } from '../../../services/API'
 import AuthContext from 'store/authContext'
 import QuestoesContext, { Questoes } from 'store/questoesContext'
+
 export default function Explorar() {
   const api = useAPI()
   const auth = useContext(AuthContext)
@@ -14,16 +15,18 @@ export default function Explorar() {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      Authorization: auth.basicAuth,
+      Authorization: auth.user?.basicAuth,
     },
   }
 
-  //   useEffect(() => {
-  //     const materia = ''
-  //     api
-  //       .get(`questoes?materia=${materia}&certificada=true`, { certificada: true }, htmlConfig)
-  //       .then((resposta) => questoes.addQuestao ? questoes.addQuestao(resposta) : null)
-  //   }, [])
+  useEffect(() => {
+    const materia = ''
+    api
+      .get(`questoes?materia=${materia}&certificada=true`, { certificada: true }, htmlConfig)
+      .then((resposta) => (questoes.addQuestao ? questoes.addQuestao(resposta) : null))
+    console.log(questoes.questoes ? questoes.questoes[0].materia : null)
+  }, [auth.user])
+
   return (
     <Container className='d-flex flex-column justify-content-center w-100 mt-4'>
       <Form.Select aria-label='Default select example' size='lg' className='border-primary'>

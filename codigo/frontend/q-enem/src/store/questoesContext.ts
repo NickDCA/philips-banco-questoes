@@ -8,6 +8,7 @@ type ItemQuestao = {
 
 export type Questao = {
   id: number
+  materia: string
   enunciado: string
   professorId: number
   certificada: boolean
