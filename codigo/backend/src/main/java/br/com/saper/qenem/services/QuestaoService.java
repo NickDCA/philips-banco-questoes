@@ -40,6 +40,13 @@ public class QuestaoService {
                     .body(questoes);
     }
 
+    public ResponseEntity<Object> findById(Long id) {
+        Questao questao = questaoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Questão não encontrada"));
+
+        return ResponseEntity.status(HttpStatus.OK).body(new QuestaoResponseDTO(questao));
+    }
+
     public ResponseEntity<Object> findAllOrderByMaisAcessadas(String materia) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(questaoRepository.findAllOrderByMaisAcessadas(materia).stream().map(

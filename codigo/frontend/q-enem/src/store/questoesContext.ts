@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-type ItemQuestao = {
+export type ItemQuestao = {
   id: number
   texto: string
   correto: boolean
@@ -13,7 +13,7 @@ export type Questao = {
   professorId: number
   certificada: boolean
   numeroAcessos: number
-  itensQuestoes: ItemQuestao[]
+  itensQuestao: ItemQuestao[]
 }
 
 export type Questoes = {

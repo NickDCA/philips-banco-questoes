@@ -42,7 +42,6 @@ export default function Login() {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       auth.updateUser ? auth.updateUser({ ...res.usuario, basicAuth }) : null
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      console.log(auth.user)
 
       navigate('/q-enem')
     })

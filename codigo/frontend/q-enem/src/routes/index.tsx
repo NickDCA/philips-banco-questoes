@@ -8,6 +8,7 @@ import NotFound from 'pages/notFound'
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import AuthContext from 'store/authContext'
 import React, { useContext } from 'react'
+import QuestaoPagina from 'components/questaoPagina'
 
 const RequireAuth = ({ children }: { children: any }) => {
   const auth = useContext(AuthContext)
@@ -37,6 +38,7 @@ export default function MainRouter() {
           <Route path={'home'} element={<Inicio />} />
           <Route path={'desempenho'} element={<Desempenho />} />
           <Route path={'explorar'} element={<Explorar />} />
+          <Route path={'/q-enem/explorar/questao/:id'} element={<QuestaoPagina />} />
         </Route>
       </Route>
     </Routes>

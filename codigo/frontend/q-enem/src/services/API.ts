@@ -17,7 +17,6 @@ export const useAPI = () => {
   }, [auth.user])
 
   const get = async (url: string, params: any, httpConfig?: any): Promise<any> => {
-    console.log(defaultHttpConfig)
     const response = await Axios.get(BACK_HOST + url, {
       ...(httpConfig ? httpConfig : defaultHttpConfig),
       params,
