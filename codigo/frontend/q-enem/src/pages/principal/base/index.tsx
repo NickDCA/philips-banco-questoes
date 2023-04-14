@@ -85,7 +85,7 @@ export default function Base() {
           icon: <BsHouse />,
         },
         {
-          text: 'Desempenho',
+          text: 'Desempenho 🛠',
           path: 'desempenho',
           icon: <BsSpeedometer2 />,
         },
@@ -102,7 +102,7 @@ export default function Base() {
       ],
       dropLinks: [
         {
-          text: 'Salvos',
+          text: 'Salvos 🛠',
           path: 'salvos',
           icon: <BsFileEarmarkCheck />,
         },

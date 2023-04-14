@@ -3,19 +3,26 @@ import { Link } from 'react-router-dom'
 
 export default function ProvaCard({ children }: { children: any }) {
   return (
-    <div className='list-group-item list-group-item-action p-2 align-self-end'>
+    <div className='list-group-item justify-content-start d-flex align-items-center'>
       {!children.resolvida ? (
-        <span className='border border-warning bg-warning bg-opacity-10 rounded w-25 ms-3 p-1 flex-end'>
-          RESOLVER
-        </span>
+        <Link to={`prova/${children.id}`} className='text-decoration-none link me-2 '>
+          [{children.materia} #{children.id}]
+        </Link>
       ) : (
-        <span className='border border-success bg-success bg-opacity-10 rounded w-25 ms-3 p-1 flex-end'>
-          RESOLVIDA
+        <span className='text-decoration-none text-muted me-2'>
+          [{children.materia} #{children.id}]
         </span>
       )}
-      <Link to='/' className='text-decoration-none fs-5 link ms-3'>
-        [{children.materia} #{children.id}]
-      </Link>
+
+      {!children.resolvida ? (
+        <span className='badge rounded-pill text-bg-warning'>NÃO RESOLVIDA</span>
+      ) : (
+        <span className='badge rounded-pill text-bg-success'>RESOLVIDA</span>
+      )}
+
+      {children.resolvida ? (
+        <span className='badge rounded-pill text-primary ms-auto fs-6'>{children.nota}/10</span>
+      ) : null}
     </div>
   )
 }
