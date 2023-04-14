@@ -3,6 +3,7 @@ import React from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import heroPic from './enem-pag-inicial.jpg'
 import Footer from 'components/footer'
+import { Link } from 'react-router-dom'
 
 function LandingPage() {
   return (
@@ -22,9 +23,9 @@ function LandingPage() {
               que quiser!
             </p>
             <button type='button' className='btn btn-primary btn-lg'>
-              <a href='cadastro.html' className='text-white text-decoration-none'>
+              <Link to={'/entrar'} className='text-white text-decoration-none'>
                 Quero decolar com o Q Enem 🚀 <span className='fs-4'>&#8594;</span>
-              </a>
+              </Link>
             </button>
           </div>
           <div className='d-none d-lg-flex flex-wrap col-lg-6 justify-content-center align-items-stretch'>

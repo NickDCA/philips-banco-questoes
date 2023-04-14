@@ -33,9 +33,7 @@ export default function Explorar() {
 
   return (
     <Container className='d-flex flex-column justify-content-center w-100 mt-4'>
-      <h1 className='text-center mb-3'>
-        EXPLORAR <BsSearch />
-      </h1>
+      <h1 className='text-center mb-3'>EXPLORAR 🔎</h1>
       <select
         className='form-select border border-primary mb-3'
         value={filtro}
