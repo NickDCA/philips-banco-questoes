@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
+import { BsPlus, BsPlusCircle, BsPlusSquare } from 'react-icons/bs'
 import { useAPI } from 'services/API'
 
 export default function GerarProva() {
@@ -86,8 +87,8 @@ export default function GerarProva() {
                 45 - Padrão ENEM
               </option>
             </select>
-            <button className='btn btn-lg btn-primary mt-3' type='submit'>
-              COMEÇAR SIMULADO
+            <button className='btn btn-lg btn-outline-success mt-3' type='submit'>
+              GERAR PROVA <BsPlus className='mb-1' size={24} />
             </button>
           </Form>
         </div>

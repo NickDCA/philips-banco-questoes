@@ -4,6 +4,8 @@ import { Outlet } from 'react-router-dom'
 import { useContext } from 'react'
 import AuthContext from 'store/authContext'
 import {
+  BsFileEarmarkCheck,
+  BsFileEarmarkCheckFill,
   BsFileEarmarkPdf,
   BsFilePlus,
   BsFire,
@@ -13,6 +15,8 @@ import {
   BsSpeedometer2,
 } from 'react-icons/bs'
 import { Container } from 'react-bootstrap'
+import React from 'react'
+import { BsFileEarmarkPlus } from 'react-icons/bs'
 
 export default function Base() {
   const auth = useContext(AuthContext)
@@ -39,7 +43,7 @@ export default function Base() {
         {
           text: 'Salvos',
           path: 'salvos',
-          icon: <BsHouse />,
+          icon: <BsFileEarmarkCheck />,
         },
         {
           text: 'Explorar',
@@ -81,21 +85,26 @@ export default function Base() {
           icon: <BsHouse />,
         },
         {
-          text: 'Desempenho',
+          text: 'Desempenho 🛠',
           path: 'desempenho',
           icon: <BsSpeedometer2 />,
         },
         {
           text: 'Gerar Prova',
           path: 'gerar-prova',
-          icon: <BsJournalCheck />,
+          icon: <BsFileEarmarkPlus />,
+        },
+        {
+          text: 'Provas',
+          path: 'provas',
+          icon: <BsFileEarmarkCheck />,
         },
       ],
       dropLinks: [
         {
-          text: 'Salvos',
+          text: 'Salvos 🛠',
           path: 'salvos',
-          icon: <BsHouse />,
+          icon: <BsFileEarmarkCheck />,
         },
         {
           text: 'Explorar',
