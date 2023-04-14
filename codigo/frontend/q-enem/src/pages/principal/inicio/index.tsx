@@ -42,7 +42,7 @@ export default function Inicio() {
           </Link>{' '}
           ...fácil, né?
         </li>
-        <li className='list-group-item text-center fw-semibold'>EM DESENVOLVIMENTO 🛠</li>
+        <li className='list-group-item text-center fw-semibold'>EM DESENVOLVIMENTO (v0.1) 🛠</li>
         <li className='list-group-item text-muted fw-semibold'>Desempenho</li>
         <li className='list-group-item text-muted fw-semibold'>Salvar questões e materiais</li>
       </ul>
