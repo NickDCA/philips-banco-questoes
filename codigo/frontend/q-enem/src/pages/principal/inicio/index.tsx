@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { Container } from 'react-bootstrap'
 import AuthContext from 'store/authContext'
 
-export default function AlunoInicio() {
+export default function Inicio() {
   const auth = useContext(AuthContext)
   return (
     <Container className='row my-3 g-3 justify-content-center'>

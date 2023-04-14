@@ -1,11 +1,26 @@
-import AlunoBase from 'pages/aluno/base'
-import AlunoDesempenho from 'pages/aluno/desempenho'
-import AlunoExplorar from 'pages/aluno/explorar'
-import AlunoInicio from 'pages/aluno/inicio'
+import Base from 'pages/principal/base'
+import Desempenho from 'pages/principal/desempenho'
+import Explorar from 'pages/principal/explorar'
+import Inicio from 'pages/principal/inicio'
 import Login from 'pages/authentication/login'
 import LandingPage from 'pages/landingPage'
 import NotFound from 'pages/notFound'
-import { Outlet, Route, Routes } from 'react-router-dom'
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
+import AuthContext from 'store/authContext'
+import React, { useContext } from 'react'
+import QuestaoPagina from 'components/questaoPagina'
+import MaisAcessados from 'pages/principal/mais-acessadas'
+import GerarProva from 'pages/principal/gerarProva'
+
+const RequireAuth = ({ children }: { children: any }) => {
+  const auth = useContext(AuthContext)
+
+  if (!auth.user) {
+    return <Navigate to={'/entrar'} />
+  }
+
+  return children
+}
 
 export default function MainRouter() {
   return (
@@ -14,10 +29,21 @@ export default function MainRouter() {
         <Route path={'/'} element={<LandingPage />} />
         <Route path={'/entrar'} element={<Login />} />
 
-        <Route path={'/aluno/'} element={<AlunoBase />}>
-          <Route index element={<AlunoInicio />} />
-          <Route path={'desempenho'} element={<AlunoDesempenho />} />
-          <Route path={'explorar'} element={<AlunoExplorar />} />
+        <Route
+          path={'/q-enem'}
+          element={
+            <RequireAuth>
+              <Base />
+            </RequireAuth>
+          }
+        >
+          <Route path={'home'} element={<Inicio />} />
+          <Route path={'desempenho'} element={<Desempenho />} />
+          <Route path={'explorar'} element={<Explorar />} />
+          <Route path={'mais-acessados'} element={<MaisAcessados />} />
+          <Route path={'/q-enem/explorar/questao/:id'} element={<QuestaoPagina />} />
+          <Route path={'/q-enem/mais-acessados/questao/:id'} element={<QuestaoPagina />} />
+          <Route path={'gerar-prova'} element={<GerarProva />} />
         </Route>
       </Route>
     </Routes>

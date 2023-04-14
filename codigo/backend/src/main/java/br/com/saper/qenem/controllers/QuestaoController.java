@@ -24,6 +24,11 @@ public class QuestaoController {
         return questaoService.findAll(materia, certificada);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findById(@PathVariable(name = "id") Long id) {
+        return questaoService.findById(id);
+    }
+
     @GetMapping("/mais-acessadas")
     public ResponseEntity findAllOrderByMaisAcessadas(
             @RequestParam(name="materia", defaultValue = "") String materia

@@ -38,23 +38,18 @@ export default function Login() {
         Authorization: basicAuth,
       },
     }
-    console.log(basicAuth)
-    api
-      .get('perfil/dados', {}, htmlConfig)
-      .then((res) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        auth.updateUser ? auth.updateUser(res.data.usuario) : null
-        console.log(auth.user)
-        navigate('/aluno')
-      })
-      .catch((e) => {
-        console.log('Error:', e)
-      })
+    api.get('perfil/dados', {}, htmlConfig).then((res) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      auth.updateUser ? auth.updateUser({ ...res.usuario, basicAuth }) : null
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+
+      navigate('/q-enem')
+    })
   }
 
   return (
     <Form
-      className='row g-2 w-25 m-auto justify-content-center align-items-center text-center border p-2 my-4'
+      className='row g-2 w-50 m-auto justify-content-center align-items-center text-center border p-2 my-4'
       onSubmit={handleSubmit}
     >
       <div className='col-6'>

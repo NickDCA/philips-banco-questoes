@@ -19,7 +19,7 @@ public class ProvaResponseDTO {
 
     private Long id;
 
-    private AlunoResponseDTO aluno;
+    private Long alunoId;
 
     private MateriaEnum materia;
 
@@ -31,7 +31,7 @@ public class ProvaResponseDTO {
 
     public ProvaResponseDTO(Prova prova) {
         this.id = prova.getId();
-        this.aluno = new AlunoResponseDTO(prova.getAluno());
+        this.alunoId = prova.getAluno().getId();
         this.materia = prova.getMateria();
         this.nota = prova.getNota();
         this.resolvida = prova.isResolvida();

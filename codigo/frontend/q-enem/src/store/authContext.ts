@@ -8,6 +8,7 @@ export type User = {
   roles: {
     authority: string
   }[]
+  basicAuth: string
 }
 
 export type AuthType = {
