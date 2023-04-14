@@ -1,8 +1,8 @@
 import QuestaoSimulado from 'components/questaoSimulado'
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Form, ListGroup, ListGroupItem } from 'react-bootstrap'
-import { BsCheck, BsSend, BsX } from 'react-icons/bs'
-import { useParams } from 'react-router-dom'
+import { BsArrowLeft, BsCheck, BsSend, BsX } from 'react-icons/bs'
+import { Link, useParams } from 'react-router-dom'
 import { useAPI } from 'services/API'
 import AuthContext from 'store/authContext'
 import { Prova } from 'store/provaContext'
@@ -17,6 +17,7 @@ export default function ProvaSimulado() {
   const [prova, setProva] = useState<Prova>()
   const [scores, setScores] = useState<Questao[]>([])
   const [showResult, setShowResult] = useState<boolean>(false)
+  const [resolvida, setResolvida] = useState<boolean>(false)
 
   function updateScores(questao: Questao, item: ItemQuestao) {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -44,6 +45,7 @@ export default function ProvaSimulado() {
       console.log(response)
       console.log(nota)
     })
+    setResolvida(!resolvida)
   }
 
   return (
@@ -51,7 +53,12 @@ export default function ProvaSimulado() {
       <Form onSubmit={handleSubmit}>
         <div className='my-3'>
           {prova?.questoes.map((questao: Questao) => (
-            <QuestaoSimulado questao={questao} updateScores={updateScores} />
+            <QuestaoSimulado
+              questao={questao}
+              updateScores={updateScores}
+              resolvida={resolvida}
+              scores={scores}
+            />
           ))}
         </div>
 
@@ -62,7 +69,7 @@ export default function ProvaSimulado() {
 
       {showResult ? (
         <div className='border-start border-end text-start fs-6 p-3'>
-          <h3>
+          <h3 className='mb-3'>
             Você acertou {scores.length}/{prova?.questoes.length}!
           </h3>
           <h4>GABARITO</h4>
@@ -79,6 +86,12 @@ export default function ProvaSimulado() {
               ),
             )}
           </ListGroup>
+          <Link to='/q-enem/provas' className='text-decoration-none'>
+            <button className='btn btn-outline-primary p-2'>
+              <BsArrowLeft className='mb-1 me-2' />
+              Provas
+            </button>
+          </Link>
         </div>
       ) : null}
     </Container>
