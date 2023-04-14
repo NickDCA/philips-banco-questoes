@@ -43,7 +43,7 @@ export default function Login() {
       auth.updateUser ? auth.updateUser({ ...res.usuario, basicAuth }) : null
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 
-      navigate('/q-enem')
+      navigate('/q-enem/home')
     })
   }
 

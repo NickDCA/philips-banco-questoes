@@ -70,7 +70,8 @@ public class QuestaoService {
             questao.setMateria(MateriaEnum.valueOf(questaoRequestDTO.getMateria()));
             questao.setEnunciado(questaoRequestDTO.getEnunciado());
             questao.setNumeroAcessos(Long.valueOf(0));
-            questao.setCertificada(null);
+            //questao.setCertificada(null); // Por enquanto já criar questão certificada
+            questao.setCertificada(true);
 
             for (ItemQuestaoRequestDTO item : questaoRequestDTO.getItensQuestao()) {
                 ItemQuestao itemQuestao = new ItemQuestao();

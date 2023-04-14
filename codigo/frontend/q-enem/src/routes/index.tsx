@@ -13,6 +13,7 @@ import MaisAcessados from 'pages/principal/mais-acessadas'
 import GerarProva from 'pages/principal/gerarProva'
 import Provas from 'pages/principal/provas'
 import ProvaSimulado from 'pages/principal/prova'
+import NovaQuestao from 'pages/principal/novaQuestao'
 
 const RequireAuth = ({ children }: { children: any }) => {
   const auth = useContext(AuthContext)
@@ -48,6 +49,7 @@ export default function MainRouter() {
           <Route path={'gerar-prova'} element={<GerarProva />} />
           <Route path={'provas'} element={<Provas />} />
           <Route path={'/q-enem/provas/prova/:id'} element={<ProvaSimulado />} />
+          <Route path={'nova-questao'} element={<NovaQuestao />} />
         </Route>
       </Route>
     </Routes>

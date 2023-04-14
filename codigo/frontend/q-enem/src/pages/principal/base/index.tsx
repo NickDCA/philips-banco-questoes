@@ -70,7 +70,7 @@ export default function Base() {
           icon: <BsFilePlus />,
         },
         {
-          text: 'Material',
+          text: 'Material 🛠',
           path: 'novo-material',
           icon: <BsFileEarmarkPdf />,
         },
