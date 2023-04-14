@@ -1,4 +1,4 @@
-import Axios, { AxiosError } from 'axios'
+import Axios from 'axios'
 import { useContext, useMemo } from 'react'
 import AuthContext from 'store/authContext'
 

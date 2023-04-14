@@ -9,6 +9,8 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import AuthContext from 'store/authContext'
 import React, { useContext } from 'react'
 import QuestaoPagina from 'components/questaoPagina'
+import MaisAcessados from 'pages/principal/mais-acessadas'
+import GerarProva from 'pages/principal/gerarProva'
 
 const RequireAuth = ({ children }: { children: any }) => {
   const auth = useContext(AuthContext)
@@ -38,7 +40,10 @@ export default function MainRouter() {
           <Route path={'home'} element={<Inicio />} />
           <Route path={'desempenho'} element={<Desempenho />} />
           <Route path={'explorar'} element={<Explorar />} />
+          <Route path={'mais-acessados'} element={<MaisAcessados />} />
           <Route path={'/q-enem/explorar/questao/:id'} element={<QuestaoPagina />} />
+          <Route path={'/q-enem/mais-acessados/questao/:id'} element={<QuestaoPagina />} />
+          <Route path={'gerar-prova'} element={<GerarProva />} />
         </Route>
       </Route>
     </Routes>
