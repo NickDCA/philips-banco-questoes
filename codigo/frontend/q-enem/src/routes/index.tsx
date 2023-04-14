@@ -11,6 +11,7 @@ import React, { useContext } from 'react'
 import QuestaoPagina from 'components/questaoPagina'
 import MaisAcessados from 'pages/principal/mais-acessadas'
 import GerarProva from 'pages/principal/gerarProva'
+import Provas from 'pages/principal/provas'
 
 const RequireAuth = ({ children }: { children: any }) => {
   const auth = useContext(AuthContext)
@@ -44,6 +45,7 @@ export default function MainRouter() {
           <Route path={'/q-enem/explorar/questao/:id'} element={<QuestaoPagina />} />
           <Route path={'/q-enem/mais-acessados/questao/:id'} element={<QuestaoPagina />} />
           <Route path={'gerar-prova'} element={<GerarProva />} />
+          <Route path={'provas'} element={<Provas />} />
         </Route>
       </Route>
     </Routes>
